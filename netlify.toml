@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# This prevents 404 errors if you ever add additional pages/routing later!
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
