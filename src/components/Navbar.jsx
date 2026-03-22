@@ -64,7 +64,7 @@ const Navbar = () => {
             cursor: "pointer",
             padding: "8px 0",
             flexShrink: 0,
-            position: "relative"
+            position: "relative",
           }}
           aria-label="Home"
         >
@@ -80,10 +80,21 @@ const Navbar = () => {
               border: "1.5px solid var(--accent)",
               opacity: 0.6,
               zIndex: 0,
-              pointerEvents: "none"
+              pointerEvents: "none",
             }}
           >
-             <div style={{ position: "absolute", top: 4, left: -3, width: 6, height: 6, borderRadius: "50%", background: "var(--accent)", boxShadow: "0 0 10px var(--accent)" }} />
+            <div
+              style={{
+                position: "absolute",
+                top: 4,
+                left: -3,
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "var(--accent)",
+                boxShadow: "0 0 10px var(--accent)",
+              }}
+            />
           </div>
 
           <div
@@ -103,7 +114,7 @@ const Navbar = () => {
               flexShrink: 0,
               position: "relative",
               zIndex: 1,
-              boxShadow: "0 8px 20px rgba(99,102,241,0.25)"
+              boxShadow: "0 8px 20px rgba(99,102,241,0.25)",
             }}
             className="nav-logo"
           >
@@ -117,7 +128,7 @@ const Navbar = () => {
               color: "var(--text-primary)",
               letterSpacing: "-0.03em",
               position: "relative",
-              zIndex: 1
+              zIndex: 1,
             }}
             className="nav-brand"
           >
@@ -126,7 +137,10 @@ const Navbar = () => {
         </button>
 
         {/* Desktop links */}
-        <div style={{ display: "flex", alignItems: "center", gap: 2 }} className="nav-links-desktop">
+        <div
+          style={{ display: "flex", alignItems: "center", gap: 2 }}
+          className="nav-links-desktop"
+        >
           {NAV_LINKS.map(({ id, label }) => (
             <button
               key={id}
@@ -138,17 +152,22 @@ const Navbar = () => {
                 fontSize: 14,
                 fontWeight: active === id ? 600 : 400,
                 fontFamily: "'Inter', sans-serif",
-                color: active === id ? "var(--text-primary)" : "var(--text-secondary)",
+                color:
+                  active === id
+                    ? "var(--text-primary)"
+                    : "var(--text-secondary)",
                 padding: "8px 14px",
                 borderRadius: 8,
                 transition: "all 0.15s",
                 letterSpacing: "-0.01em",
               }}
               onMouseEnter={(e) => {
-                if (active !== id) e.currentTarget.style.color = "var(--text-primary)";
+                if (active !== id)
+                  e.currentTarget.style.color = "var(--text-primary)";
               }}
               onMouseLeave={(e) => {
-                if (active !== id) e.currentTarget.style.color = "var(--text-secondary)";
+                if (active !== id)
+                  e.currentTarget.style.color = "var(--text-secondary)";
               }}
             >
               {label}
@@ -179,8 +198,12 @@ const Navbar = () => {
             transition: "border-color 0.2s",
           }}
           className="nav-hamburger"
-          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--accent-border)")}
-          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border-strong)")}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.borderColor = "var(--accent-border)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.borderColor = "var(--border-strong)")
+          }
         >
           {[0, 1, 2].map((i) => (
             <span
@@ -242,11 +265,17 @@ const Navbar = () => {
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div
               style={{
-                width: 36, height: 36, borderRadius: 9,
-                background: "var(--accent)", display: "flex",
-                alignItems: "center", justifyContent: "center",
-                color: "#fff", fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700, fontSize: 14,
+                width: 36,
+                height: 36,
+                borderRadius: 9,
+                background: "var(--accent)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#fff",
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 700,
+                fontSize: 14,
               }}
             >
               DM
@@ -258,10 +287,14 @@ const Navbar = () => {
               background: "var(--bg-elevated)",
               border: "1px solid var(--border-strong)",
               borderRadius: 8,
-              width: 36, height: 36,
-              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 36,
+              height: 36,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               color: "var(--text-secondary)",
-              cursor: "pointer", fontSize: 16,
+              cursor: "pointer",
+              fontSize: 16,
               transition: "all 0.2s",
             }}
             aria-label="Close"
@@ -304,7 +337,10 @@ const Navbar = () => {
         >
           {[
             { label: "GitHub", href: "https://github.com/devendramali12" },
-            { label: "LinkedIn", href: "https://www.linkedin.com/in/devendra-mali-851538228/" },
+            {
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/in/devendra-mali-851538228/",
+            },
           ].map((s) => (
             <a
               key={s.label}

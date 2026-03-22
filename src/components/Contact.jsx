@@ -1,13 +1,29 @@
 // src/components/Contact.jsx
 import React from "react";
 import useInView from "../hooks/useInView";
+import Toast from "./Toast";
 
 const CONTACT_INFO = [
   {
     icon: (
-      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      <svg
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+        />
       </svg>
     ),
     label: "Location",
@@ -16,8 +32,19 @@ const CONTACT_INFO = [
   },
   {
     icon: (
-      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <svg
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        />
       </svg>
     ),
     label: "Email",
@@ -52,20 +79,25 @@ const Contact = () => {
   const [form, setForm] = React.useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = React.useState({});
   const [status, setStatus] = React.useState("idle");
+  const [toast, setToast] = React.useState(null);
 
   const validate = () => {
     const e = {};
     if (!form.name.trim()) e.name = "Name is required";
     if (!form.email.trim()) e.email = "Email is required";
-    else if (!/^[^@]+@[^@]+\.[^@]+$/.test(form.email)) e.email = "Enter a valid email";
+    else if (!/^[^@]+@[^@]+\.[^@]+$/.test(form.email))
+      e.email = "Enter a valid email";
     if (!form.message.trim()) e.message = "Message is required";
-    else if (form.message.trim().length < 10) e.message = "Message is too short";
+    else if (form.message.trim().length < 10)
+      e.message = "Message is too short";
     return e;
   };
 
   const encode = (data) => {
     return Object.keys(data)
-      .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]),
+      )
       .join("&");
   };
 
@@ -74,6 +106,7 @@ const Contact = () => {
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
+      setToast({ message: "Please fix the errors above", type: "error" });
       return;
     }
     setErrors({});
@@ -87,11 +120,18 @@ const Contact = () => {
       .then(() => {
         setStatus("sent");
         setForm({ name: "", email: "", message: "" });
+        setToast({
+          message: "Message sent successfully! I'll be in touch soon.",
+          type: "success",
+        });
         setTimeout(() => setStatus("idle"), 4000);
       })
       .catch((error) => {
         console.error("Form submission error:", error);
-        alert("Failed to send message. Please reach out via email instead.");
+        setToast({
+          message: "Failed to send. Please reach out via email.",
+          type: "error",
+        });
         setStatus("idle");
       });
   };
@@ -147,8 +187,7 @@ const Contact = () => {
         >
           <span className="section-label">Contact</span>
           <h2 className="section-title" style={{ marginBottom: 16 }}>
-            Let's Work{" "}
-            <span className="gradient-text">Together</span>
+            Let's Work <span className="gradient-text">Together</span>
           </h2>
           <p
             style={{
@@ -226,7 +265,13 @@ const Contact = () => {
                   >
                     {info.label}
                   </div>
-                  <div style={{ fontSize: 15, fontWeight: 500, color: "var(--text-primary)" }}>
+                  <div
+                    style={{
+                      fontSize: 15,
+                      fontWeight: 500,
+                      color: "var(--text-primary)",
+                    }}
+                  >
                     {info.value}
                   </div>
                 </div>
@@ -244,8 +289,26 @@ const Contact = () => {
             transform: inView ? "none" : "translateX(32px)",
             transition: "all 0.8s 0.2s cubic-bezier(0.4,0,0.2,1)",
             background: "var(--bg-base)",
+            position: "relative",
           }}
         >
+          {/* Blur overlay on submission */}
+          {(status === "loading" || status === "sent") && (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "rgba(13, 17, 23, 0.6)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                borderRadius: "var(--radius)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 10,
+              }}
+            />
+          )}
           {status === "sent" ? (
             <div
               style={{
@@ -256,14 +319,30 @@ const Contact = () => {
             >
               <div
                 style={{
-                  width: 64, height: 64, borderRadius: "50%",
+                  width: 64,
+                  height: 64,
+                  borderRadius: "50%",
                   background: "rgba(16,185,129,0.1)",
-                  color: "#10B981", display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto 24px"
+                  color: "#10B981",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "0 auto 24px",
                 }}
               >
-                <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                <svg
+                  width="32"
+                  height="32"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={3}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
               </div>
               <h3
@@ -277,22 +356,36 @@ const Contact = () => {
               >
                 Message Sent!
               </h3>
-              <p style={{ color: "var(--text-secondary)", fontSize: 15, lineHeight: 1.6 }}>
+              <p
+                style={{
+                  color: "var(--text-secondary)",
+                  fontSize: 15,
+                  lineHeight: 1.6,
+                }}
+              >
                 Thanks for reaching out. I'll get back to you within 24 hours.
               </p>
             </div>
           ) : (
-            <form 
+            <form
               name="contact"
               method="post"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
-              onSubmit={handleSubmit} 
+              onSubmit={handleSubmit}
               noValidate
             >
+              {/* Honeypot field for spam protection */}
+              <input
+                type="hidden"
+                name="bot-field"
+                value=""
+                onChange={(e) => e.preventDefault()}
+              />
+
               {/* Required for Netlify correctly routing the form in a React app */}
               <input type="hidden" name="form-name" value="contact" />
-              
+
               <h3
                 style={{
                   fontFamily: "'Space Grotesk', system-ui, sans-serif",
@@ -304,7 +397,13 @@ const Contact = () => {
               >
                 Send a Message
               </h3>
-              <p style={{ fontSize: 14, color: "var(--text-secondary)", marginBottom: 32 }}>
+              <p
+                style={{
+                  fontSize: 14,
+                  color: "var(--text-secondary)",
+                  marginBottom: 32,
+                }}
+              >
                 Fill out the form below or send me an email directly.
               </p>
 
@@ -325,21 +424,31 @@ const Contact = () => {
                   value={form.name}
                   onChange={(e) => {
                     setForm((f) => ({ ...f, name: e.target.value }));
-                    if (errors.name) setErrors((err) => ({ ...err, name: undefined }));
+                    if (errors.name)
+                      setErrors((err) => ({ ...err, name: undefined }));
                   }}
                   onFocus={(e) => {
                     e.target.style.borderColor = "var(--accent)";
                     e.target.style.boxShadow = "var(--glow)";
                   }}
                   onBlur={(e) => {
-                    e.target.style.borderColor = errors.name ? "#F87171" : "var(--border-strong)";
+                    e.target.style.borderColor = errors.name
+                      ? "#F87171"
+                      : "var(--border-strong)";
                     e.target.style.boxShadow = "none";
                   }}
                   style={getInputStyle("name")}
                   placeholder="John Doe"
                 />
                 {errors.name && (
-                  <p style={{ color: "#F87171", fontSize: 12, marginTop: 6, fontWeight: 500 }}>
+                  <p
+                    style={{
+                      color: "#F87171",
+                      fontSize: 12,
+                      marginTop: 6,
+                      fontWeight: 500,
+                    }}
+                  >
                     {errors.name}
                   </p>
                 )}
@@ -363,21 +472,31 @@ const Contact = () => {
                   value={form.email}
                   onChange={(e) => {
                     setForm((f) => ({ ...f, email: e.target.value }));
-                    if (errors.email) setErrors((err) => ({ ...err, email: undefined }));
+                    if (errors.email)
+                      setErrors((err) => ({ ...err, email: undefined }));
                   }}
                   onFocus={(e) => {
                     e.target.style.borderColor = "var(--accent)";
                     e.target.style.boxShadow = "var(--glow)";
                   }}
                   onBlur={(e) => {
-                    e.target.style.borderColor = errors.email ? "#F87171" : "var(--border-strong)";
+                    e.target.style.borderColor = errors.email
+                      ? "#F87171"
+                      : "var(--border-strong)";
                     e.target.style.boxShadow = "none";
                   }}
                   style={getInputStyle("email")}
                   placeholder="john@example.com"
                 />
                 {errors.email && (
-                  <p style={{ color: "#F87171", fontSize: 12, marginTop: 6, fontWeight: 500 }}>
+                  <p
+                    style={{
+                      color: "#F87171",
+                      fontSize: 12,
+                      marginTop: 6,
+                      fontWeight: 500,
+                    }}
+                  >
                     {errors.email}
                   </p>
                 )}
@@ -385,37 +504,73 @@ const Contact = () => {
 
               {/* Message */}
               <div style={{ marginBottom: 32 }}>
-                <label
+                <div
                   style={{
-                    fontSize: 13,
-                    fontWeight: 500,
-                    color: "var(--text-secondary)",
-                    display: "block",
+                    display: "flex",
+                    justifyContent: "space-between",
                     marginBottom: 8,
                   }}
                 >
-                  Message
-                </label>
+                  <label
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 500,
+                      color: "var(--text-secondary)",
+                      display: "block",
+                    }}
+                  >
+                    Message
+                  </label>
+                  <span
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 500,
+                      color:
+                        form.message.length > 500
+                          ? "#F87171"
+                          : "var(--text-muted)",
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
+                    {form.message.length}/1000
+                  </span>
+                </div>
                 <textarea
                   value={form.message}
                   onChange={(e) => {
-                    setForm((f) => ({ ...f, message: e.target.value }));
-                    if (errors.message) setErrors((err) => ({ ...err, message: undefined }));
+                    if (e.target.value.length <= 1000) {
+                      setForm((f) => ({ ...f, message: e.target.value }));
+                      if (errors.message)
+                        setErrors((err) => ({ ...err, message: undefined }));
+                    }
                   }}
                   onFocus={(e) => {
                     e.target.style.borderColor = "var(--accent)";
                     e.target.style.boxShadow = "var(--glow)";
                   }}
                   onBlur={(e) => {
-                    e.target.style.borderColor = errors.message ? "#F87171" : "var(--border-strong)";
+                    e.target.style.borderColor = errors.message
+                      ? "#F87171"
+                      : "var(--border-strong)";
                     e.target.style.boxShadow = "none";
                   }}
                   rows={5}
-                  style={{ ...getInputStyle("message"), resize: "vertical", minHeight: 120 }}
+                  style={{
+                    ...getInputStyle("message"),
+                    resize: "vertical",
+                    minHeight: 120,
+                  }}
                   placeholder="Tell me about your project..."
                 />
                 {errors.message && (
-                  <p style={{ color: "#F87171", fontSize: 12, marginTop: 6, fontWeight: 500 }}>
+                  <p
+                    style={{
+                      color: "#F87171",
+                      fontSize: 12,
+                      marginTop: 6,
+                      fontWeight: 500,
+                    }}
+                  >
                     {errors.message}
                   </p>
                 )}
@@ -454,8 +609,19 @@ const Contact = () => {
                 ) : (
                   <>
                     Send Message
-                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    <svg
+                      width="18"
+                      height="18"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                      />
                     </svg>
                   </>
                 )}
@@ -464,6 +630,13 @@ const Contact = () => {
           )}
         </div>
       </div>
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
     </section>
   );
 };

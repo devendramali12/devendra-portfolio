@@ -22,8 +22,11 @@ const About = () => {
         position: "relative",
       }}
     >
-      <div className="section-divider" style={{ position: "absolute", top: 0, left: 0 }} />
-      
+      <div
+        className="section-divider"
+        style={{ position: "absolute", top: 0, left: 0 }}
+      />
+
       <div
         className="about-grid"
         style={{
@@ -56,10 +59,21 @@ const About = () => {
               border: "1.5px solid var(--accent)",
               opacity: 0.4,
               zIndex: 0,
-              pointerEvents: "none"
+              pointerEvents: "none",
             }}
           >
-             <div style={{ position: "absolute", top: 12, left: -5, width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", boxShadow: "0 0 12px var(--accent)" }} />
+            <div
+              style={{
+                position: "absolute",
+                top: 12,
+                left: -5,
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--accent)",
+                boxShadow: "0 0 12px var(--accent)",
+              }}
+            />
           </div>
 
           {/* Main decorative image block */}
@@ -76,11 +90,22 @@ const About = () => {
               justifyContent: "center",
               overflow: "hidden",
               zIndex: 1,
-              boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
+              boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
             }}
           >
-            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            <svg
+              width="100"
+              height="100"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="rgba(255,255,255,0.08)"
+              strokeWidth="1.5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              />
             </svg>
           </div>
 
@@ -102,10 +127,42 @@ const About = () => {
             }}
           >
             {STATS.map((s, i) => (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "80px 1fr", alignItems: "center", gap: 16 }}>
-                <span style={{ fontSize: 13, fontWeight: 500, color: "var(--text-muted)" }}>{s.label}</span>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 18, color: "white" }}>
-                  {s.value}<span style={{ color: "var(--accent)", fontSize: 14, marginLeft: 4 }}>{s.suffix}</span>
+              <div
+                key={i}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "80px 1fr",
+                  alignItems: "center",
+                  gap: 16,
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 500,
+                    color: "var(--text-muted)",
+                  }}
+                >
+                  {s.label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 18,
+                    color: "white",
+                  }}
+                >
+                  {s.value}
+                  <span
+                    style={{
+                      color: "var(--accent)",
+                      fontSize: 14,
+                      marginLeft: 4,
+                    }}
+                  >
+                    {s.suffix}
+                  </span>
                 </span>
               </div>
             ))}
@@ -122,9 +179,8 @@ const About = () => {
         >
           <span className="section-label">About Me</span>
           <h2 className="section-title" style={{ marginBottom: 24 }}>
-            Bridging the gap between{" "}
-            <span className="gradient-text">backend logic</span> and{" "}
-            <span style={{ color: "var(--text-primary)" }}>frontend design</span>.
+            Full Stack Developer focused on{" "}
+            <span className="gradient-text">scalable solutions</span>
           </h2>
 
           <div
@@ -139,20 +195,17 @@ const About = () => {
             }}
           >
             <p>
-              Hi, I'm Devendra, a passionate developer based in Mumbai. I am currently pursuing my 
-              <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}> MCA degree</strong> (2024–2026) 
-              after completing my B.Sc. in Computer Science. My focus is on building robust and scalable 
-              applications from the database level right up to user interactions.
+              I'm a Full Stack Developer specializing in Java backend
+              development and modern React frontends. With expertise in
+              designing scalable architectures and delivering production-grade
+              solutions, I focus on writing clean, maintainable code that solves
+              real-world problems.
             </p>
             <p>
-              Trained extensively in <strong>Java Full Stack Development</strong>, I possess a strong grasp 
-              over object-oriented principles, enterprise architecture with Servlets and JSP, and modern UI 
-              frameworks like React.
-            </p>
-            <p>
-              I believe in writing clean, maintainable code. Whether it's mastering a new framework 
-              or optimizing complex backend logic, I am constantly learning new technologies and improving 
-              my engineering skills to deliver better, more efficient solutions.
+              Currently pursuing my MCA while building projects that emphasize
+              performance, security, and user experience. I'm committed to
+              continuous learning and adopting best practices in software
+              engineering.
             </p>
           </div>
 
@@ -167,15 +220,26 @@ const About = () => {
           >
             {[
               { label: "Location", val: "Mumbai, India" },
-              { label: "Education", val: "MCA (Pursuing)" },
-              { label: "Focus", val: "Full Stack Web" },
-              { label: "Email", val: "devendraa.mali12@gmail.com" },
+              { label: "Focus", val: "Java & React" },
             ].map((info) => (
               <div key={info.label}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--text-muted)", marginBottom: 4 }}>
+                <div
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 600,
+                    color: "var(--text-muted)",
+                    marginBottom: 4,
+                  }}
+                >
                   {info.label}
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text-primary)" }}>
+                <div
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 600,
+                    color: "var(--text-primary)",
+                  }}
+                >
                   {info.val}
                 </div>
               </div>

@@ -24,8 +24,19 @@ const SOCIALS = [
     label: "Email",
     href: "mailto:devendraa.mali12@gmail.com",
     svg: (
-      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <svg
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        />
       </svg>
     ),
   },
@@ -49,7 +60,14 @@ const Footer = () => {
   }, []);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -57,27 +75,31 @@ const Footer = () => {
       <footer
         style={{
           background: "var(--bg-base)",
-          padding: "clamp(60px, 8vw, 80px) clamp(20px, 5vw, 48px) 32px",
-          position: "relative",
-          overflow: "hidden",
+          borderTop: "1px solid var(--border)",
+          padding:
+            "clamp(48px, 6vw, 64px) clamp(20px, 4vw, 48px) clamp(28px, 4vw, 36px)",
         }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          {/* Top row */}
+          {/* Main Content */}
           <div
-            className="footer-top"
             style={{
               display: "grid",
-              gridTemplateColumns: "1.5fr 1fr",
-              gap: 40,
-              marginBottom: 48,
-              paddingBottom: 48,
-              borderBottom: "1px solid var(--border)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "clamp(36px, 5vw, 48px)",
+              marginBottom: "clamp(40px, 5vw, 48px)",
             }}
           >
-            {/* Brand */}
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+            {/* Brand & Info */}
+            <div style={{ maxWidth: 400 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  marginBottom: 18,
+                }}
+              >
                 <div
                   style={{
                     width: 44,
@@ -91,6 +113,7 @@ const Footer = () => {
                     fontWeight: 700,
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontSize: 16,
+                    flexShrink: 0,
                   }}
                 >
                   DM
@@ -102,20 +125,35 @@ const Footer = () => {
                       fontSize: 20,
                       fontWeight: 700,
                       color: "var(--text-primary)",
-                      lineHeight: 1,
+                      lineHeight: 1.2,
                       letterSpacing: "-0.02em",
                     }}
                   >
                     Devendra Mali
                   </div>
-                  <div style={{ fontSize: 13, color: "var(--text-secondary)", fontWeight: 500, marginTop: 4 }}>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      color: "var(--text-secondary)",
+                      fontWeight: 500,
+                      marginTop: 4,
+                    }}
+                  >
                     Full Stack Developer
                   </div>
                 </div>
               </div>
-              <p style={{ color: "var(--text-muted)", fontSize: 14, lineHeight: 1.75, maxWidth: 360 }}>
-                Mumbai-based developer specializing in robust Java backends and modern 
-                React frontends. Open to exciting opportunities.
+              <p
+                style={{
+                  color: "var(--text-muted)",
+                  fontSize: 14,
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}
+              >
+                Building robust web applications with Java and modern frontend
+                technologies. MCA student at Mumbai University, open to
+                opportunities.
               </p>
             </div>
 
@@ -123,18 +161,23 @@ const Footer = () => {
             <div>
               <h4
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: 12,
-                  fontWeight: 600,
-                  color: "var(--text-muted)",
-                  letterSpacing: "0.15em",
-                  textTransform: "uppercase",
-                  marginBottom: 20,
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: 14,
+                  fontWeight: 700,
+                  color: "var(--text-primary)",
+                  margin: "0 0 18px 0",
                 }}
               >
                 Quick Links
               </h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <nav
+                aria-label="Footer navigation"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 12,
+                }}
+              >
                 {NAV_LINKS.map(({ id, label }) => (
                   <button
                     key={id}
@@ -145,90 +188,173 @@ const Footer = () => {
                       cursor: "pointer",
                       fontSize: 14,
                       fontWeight: 500,
-                      fontFamily: "'Inter', sans-serif",
                       color: "var(--text-secondary)",
                       textAlign: "left",
                       padding: 0,
                       transition: "color 0.2s",
                       width: "fit-content",
+                      fontFamily: "inherit",
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = "var(--accent)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = "var(--text-secondary)")
+                    }
                   >
                     {label}
                   </button>
                 ))}
+              </nav>
+            </div>
+
+            {/* Connect */}
+            <div>
+              <h4
+                style={{
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: 14,
+                  fontWeight: 700,
+                  color: "var(--text-primary)",
+                  margin: "0 0 18px 0",
+                }}
+              >
+                Connect
+              </h4>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 10,
+                  marginBottom: 20,
+                  flexWrap: "wrap",
+                }}
+              >
+                {SOCIALS.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    target={social.label !== "Email" ? "_blank" : undefined}
+                    rel={
+                      social.label !== "Email"
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 10,
+                      border: "1px solid var(--border)",
+                      background: "var(--bg-surface)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--text-secondary)",
+                      transition: "all 0.2s",
+                      flexShrink: 0,
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "var(--accent)";
+                      e.currentTarget.style.color = "var(--accent)";
+                      e.currentTarget.style.background = "var(--accent-muted)";
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "var(--border)";
+                      e.currentTarget.style.color = "var(--text-secondary)";
+                      e.currentTarget.style.background = "var(--bg-surface)";
+                      e.currentTarget.style.transform = "none";
+                    }}
+                  >
+                    {social.svg}
+                  </a>
+                ))}
               </div>
+
+              {/* Resume Download */}
+              <a
+                href="/Devendra_mali (1).pdf"
+                download="Devendra_Mali_Resume.pdf"
+                aria-label="Download resume as PDF"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "10px 18px",
+                  fontSize: 13,
+                  fontWeight: 600,
+                  borderRadius: 8,
+                  border: "1px solid var(--accent-border)",
+                  color: "var(--accent)",
+                  background: "var(--accent-muted)",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  transition: "all 0.2s",
+                  fontFamily: "'Inter', sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--accent)";
+                  e.currentTarget.style.color = "white";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 12px rgba(99,102,241,0.25)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--accent-muted)";
+                  e.currentTarget.style.color = "var(--accent)";
+                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+                Download Resume
+              </a>
             </div>
           </div>
 
-          {/* Bottom row */}
+          {/* Bottom Bar - Centered Copyright */}
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: 20,
+              paddingTop: "clamp(24px, 3vw, 32px)",
+              borderTop: "1px solid var(--border)",
+              textAlign: "center",
             }}
           >
-            <p style={{ color: "var(--text-muted)", fontSize: 14 }}>
-              © {new Date().getFullYear()} Devendra Mali. Built with{" "}
-              <span style={{ color: "var(--text-primary)" }}>React</span> &{" "}
-              <span style={{ color: "var(--text-primary)" }}>Passion</span>.
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: 13,
+                margin: 0,
+              }}
+            >
+              © {new Date().getFullYear()} Devendra Mali. All rights reserved.
             </p>
-
-            {/* Socials */}
-            <div style={{ display: "flex", gap: 12 }}>
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: 12,
-                    border: "1px solid var(--border)",
-                    background: "var(--bg-surface)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "var(--text-secondary)",
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "var(--accent-border)";
-                    e.currentTarget.style.color = "var(--text-primary)";
-                    e.currentTarget.style.background = "var(--accent-muted)";
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "var(--border)";
-                    e.currentTarget.style.color = "var(--text-secondary)";
-                    e.currentTarget.style.background = "var(--bg-surface)";
-                    e.currentTarget.style.transform = "none";
-                  }}
-                >
-                  {s.svg}
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </footer>
 
-      {/* Back to top button */}
+      {/* Back to Top Button */}
       {showTop && (
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Back to top"
+          onClick={scrollToTop}
+          aria-label="Scroll back to top"
           style={{
             position: "fixed",
-            bottom: "clamp(20px, 4vw, 32px)",
-            right: "clamp(20px, 4vw, 32px)",
+            bottom: "clamp(20px, 3vw, 32px)",
+            right: "clamp(20px, 3vw, 32px)",
             zIndex: 500,
             width: 48,
             height: 48,
@@ -240,21 +366,33 @@ const Footer = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 8px 20px rgba(99,102,241,0.4)",
-            animation: "fadeIn 0.3s ease",
-            transition: "transform 0.2s, background 0.2s",
+            boxShadow: "0 8px 20px rgba(99,102,241,0.35)",
+            transition: "all 0.3s cubic-bezier(0.4,0,0.2,1)",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateY(-4px)";
-            e.currentTarget.style.background = "var(--accent-hover)";
+            e.currentTarget.style.boxShadow =
+              "0 12px 24px rgba(99,102,241,0.45)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = "none";
-            e.currentTarget.style.background = "var(--accent)";
+            e.currentTarget.style.boxShadow =
+              "0 8px 20px rgba(99,102,241,0.35)";
           }}
         >
-          <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2.5}
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M5 15l7-7 7 7"
+            />
           </svg>
         </button>
       )}
