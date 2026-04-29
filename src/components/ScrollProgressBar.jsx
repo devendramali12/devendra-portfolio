@@ -33,7 +33,7 @@ const ScrollProgressBar = () => {
           width: `${progress}%`,
           background: "var(--accent)",
           transition: "width 0.1s linear",
-          boxShadow: "0 0 10px rgba(99,102,241,0.5)",
+          boxShadow: "0 0 10px rgba(6, 182, 212, 0.5)",
           borderRadius: "0 2px 2px 0",
         }}
       />

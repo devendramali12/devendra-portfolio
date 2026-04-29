@@ -4,93 +4,37 @@ import useInView from "../hooks/useInView";
 
 const PROJECTS = [
   {
-    num: "01",
     title: "Shop Ease",
     tagline: "E-Commerce Platform",
     desc: "A complete e-commerce solution with role-based auth for Admin & Customer, shopping cart, coupon/discount system, invoice generation, and real-time low-stock alerts with payment gateway integration.",
-    challenge:
-      "Build a scalable e-commerce system with secure payment handling and real-time inventory management",
-    solution:
-      "Implemented role-based architecture with Servlets/JSP, PostgreSQL with transaction control, and event-driven inventory monitoring",
-    result:
-      "Reduced cart abandonment by 35%, achieved 99.2% uptime in production",
-    metrics: [
-      { label: "Performance", value: "< 200ms" },
-      { label: "Users", value: "5K+/mo" },
-      { label: "Conversion", value: "+35%" },
-    ],
     tech: ["Java", "Servlets", "JSP", "PostgreSQL", "Maven", "Tomcat"],
     github:
       "https://github.com/devendramali12/Java-Eclipse/tree/master/ShoppingCart",
     live: null,
     image: "🛒",
-    features: [
-      "Role-based Access",
-      "Real-time Inventory",
-      "Payment Gateway",
-      "Invoice Generation",
-    ],
   },
   {
-    num: "02",
     title: "Travel & Tourism System",
     tagline: "Booking Management Platform",
     desc: "An MVC-based travel booking system with Admin Dashboard, full CRUD on travel packages & bookings, role-based session authentication, and SQL injection prevention via parameterized JDBC queries.",
-    challenge:
-      "Create a secure booking system with complex filtering, multi-role access control, and transaction safety",
-    solution:
-      "Built MVC pattern with parameterized queries, session-based auth, and comprehensive admin dashboard for package management",
-    result:
-      "Zero security vulnerabilities, 500+ bookings processed, 98% uptime with 0 downtime",
-    metrics: [
-      { label: "Bookings", value: "500+" },
-      { label: "Uptime", value: "98%" },
-      { label: "Security", value: "0 Issues" },
-    ],
     tech: ["Java 17", "Jakarta Servlets", "JSP", "PostgreSQL", "JDBC", "Maven"],
     github:
       "https://github.com/devendramali12/Java-Eclipse/tree/master/TravelTourismSystem",
     live: null,
     image: "✈️",
-    features: [
-      "Advanced Search",
-      "Admin Dashboard",
-      "Transaction Safety",
-      "Multi-role Auth",
-    ],
   },
   {
-    num: "03",
     title: "Weather Forecast App",
     tagline: "Real-time Weather Application",
     desc: "A responsive React application with real-time weather API integration, 5-day forecast visualizations, dark/light mode toggle, geolocation support, search history, and optimized API calls for performance.",
-    challenge:
-      "Create a performant weather app with real-time data, responsive design, and minimal API calls",
-    solution:
-      "Optimized API caching, lazy loading, code splitting with Vite, responsive CSS Grid, geolocation integration, and smart caching strategies",
-    result:
-      "Achieved 98 Lighthouse score, < 1s load time, 50K+ monthly users, 4.8★ user rating",
-    metrics: [
-      { label: "Lighthouse", value: "98" },
-      { label: "Load Time", value: "< 1s" },
-      { label: "Users/mo", value: "50K" },
-    ],
     tech: ["React", "Vite", "CSS3", "OpenWeather API"],
     github: "https://github.com/devendramali12/Weather-App",
     live: "https://forecastpro-12.netlify.app",
     image: "🌤️",
-    features: [
-      "Geolocation Support",
-      "5-day Forecast",
-      "API Caching",
-      "Responsive Design",
-    ],
   },
 ];
 
 const ProjectCard = ({ p, i, inView }) => {
-  const [expanded, setExpanded] = React.useState(false);
-
   return (
     <div
       className="card card-hover-lift"
@@ -100,263 +44,71 @@ const ProjectCard = ({ p, i, inView }) => {
         opacity: inView ? 1 : 0,
         transform: inView ? "none" : "translateY(40px)",
         transition: `all 0.7s ${i * 0.15 + 0.2}s cubic-bezier(0.4,0,0.2,1)`,
-        position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Accent strip */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 3,
-          background: "var(--accent)",
-          opacity: 0.8,
-        }}
-      />
-
       {/* Image/Icon */}
       <div
         style={{
           width: "100%",
-          height: 140,
+          height: 120,
           background: `linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-overlay) 100%)`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: 56,
+          fontSize: 48,
           borderBottom: "1px solid var(--border)",
         }}
       >
         {p.image}
       </div>
 
-      {/* Header */}
+      {/* Content */}
       <div
         style={{
-          padding: "24px 24px 16px",
-          borderBottom: "1px solid var(--border)",
-          background:
-            "linear-gradient(180deg, var(--bg-elevated) 0%, transparent 100%)",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            marginBottom: 12,
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: "'Space Grotesk', system-ui, sans-serif",
-              fontSize: 20,
-              fontWeight: 700,
-              color: "var(--text-primary)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.2,
-            }}
-          >
-            {p.title}
-          </h3>
-          <span
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 16,
-              fontWeight: 600,
-              color: "var(--text-muted)",
-            }}
-          >
-            {p.num}
-          </span>
-        </div>
-        <p
-          style={{
-            fontSize: 13,
-            color: "var(--accent)",
-            fontWeight: 600,
-            letterSpacing: "0.02em",
-          }}
-        >
-          {p.tagline}
-        </p>
-      </div>
-
-      {/* Body */}
-      <div
-        style={{
-          padding: 24,
+          padding: "24px",
           flex: 1,
           display: "flex",
           flexDirection: "column",
         }}
       >
-        {/* Metrics Pills */}
-        <div
+        {/* Header */}
+        <h3
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 8,
-            marginBottom: 20,
+            fontFamily: "'Space Grotesk', system-ui, sans-serif",
+            fontSize: 22,
+            fontWeight: 700,
+            color: "var(--text-primary)",
+            marginBottom: 4,
+            letterSpacing: "-0.02em",
           }}
         >
-          {p.metrics.map((m) => (
-            <div
-              key={m.label}
-              style={{
-                padding: "12px 8px",
-                borderRadius: 8,
-                background: "var(--accent-muted)",
-                border: "1px solid var(--accent-border)",
-                textAlign: "center",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: "var(--accent)",
-                  fontFamily: "'JetBrains Mono', monospace",
-                }}
-              >
-                {m.value}
-              </div>
-              <div
-                style={{
-                  fontSize: 11,
-                  color: "var(--text-muted)",
-                  marginTop: 4,
-                }}
-              >
-                {m.label}
-              </div>
-            </div>
-          ))}
-        </div>
+          {p.title}
+        </h3>
+        <p
+          style={{
+            fontSize: 12,
+            color: "var(--accent)",
+            fontWeight: 600,
+            letterSpacing: "0.02em",
+            marginBottom: 16,
+          }}
+        >
+          {p.tagline}
+        </p>
 
+        {/* Description */}
         <p
           style={{
             fontSize: 14,
             color: "var(--text-secondary)",
             lineHeight: 1.6,
             marginBottom: 16,
+            flex: 1,
           }}
         >
           {p.desc}
         </p>
-
-        {/* Challenge-Solution-Result (Expandable) */}
-        <button
-          onClick={() => setExpanded(!expanded)}
-          style={{
-            background: "none",
-            border: "1px solid var(--border)",
-            padding: 12,
-            borderRadius: 8,
-            fontSize: 12,
-            fontWeight: 600,
-            color: "var(--text-secondary)",
-            cursor: "pointer",
-            marginBottom: expanded ? 12 : 0,
-            transition: "all 0.2s",
-            textAlign: "left",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "var(--accent)";
-            e.currentTarget.style.color = "var(--accent)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = "var(--border)";
-            e.currentTarget.style.color = "var(--text-secondary)";
-          }}
-        >
-          {expanded ? "Hide " : "View "} Case Study →
-        </button>
-
-        {expanded && (
-          <div
-            style={{
-              padding: 12,
-              borderRadius: 8,
-              background: "var(--bg-elevated)",
-              border: "1px solid var(--border)",
-              marginBottom: 16,
-              display: "flex",
-              flexDirection: "column",
-              gap: 12,
-              animation: "fadeUp 0.3s ease",
-            }}
-          >
-            <div>
-              <p
-                style={{
-                  fontSize: 11,
-                  fontWeight: 600,
-                  color: "var(--accent)",
-                  marginBottom: 4,
-                }}
-              >
-                CHALLENGE
-              </p>
-              <p
-                style={{
-                  fontSize: 13,
-                  color: "var(--text-secondary)",
-                  lineHeight: 1.5,
-                }}
-              >
-                {p.challenge}
-              </p>
-            </div>
-            <div style={{ borderTop: "1px solid var(--border)" }} />
-            <div>
-              <p
-                style={{
-                  fontSize: 11,
-                  fontWeight: 600,
-                  color: "var(--accent)",
-                  marginBottom: 4,
-                }}
-              >
-                SOLUTION
-              </p>
-              <p
-                style={{
-                  fontSize: 13,
-                  color: "var(--text-secondary)",
-                  lineHeight: 1.5,
-                }}
-              >
-                {p.solution}
-              </p>
-            </div>
-            <div style={{ borderTop: "1px solid var(--border)" }} />
-            <div>
-              <p
-                style={{
-                  fontSize: 11,
-                  fontWeight: 600,
-                  color: "var(--accent)",
-                  marginBottom: 4,
-                }}
-              >
-                RESULT
-              </p>
-              <p
-                style={{
-                  fontSize: 13,
-                  color: "var(--text-secondary)",
-                  lineHeight: 1.5,
-                }}
-              >
-                {p.result}
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Tech tags */}
         <div
@@ -387,7 +139,7 @@ const ProjectCard = ({ p, i, inView }) => {
         </div>
 
         {/* Footer buttons */}
-        <div style={{ display: "flex", gap: 8, marginTop: "auto" }}>
+        <div style={{ display: "flex", gap: 8 }}>
           <a
             href={p.github}
             target="_blank"
@@ -475,7 +227,7 @@ const Projects = () => {
           }}
         >
           {PROJECTS.map((p, i) => (
-            <ProjectCard key={p.num} p={p} i={i} inView={inView} />
+            <ProjectCard key={p.title} p={p} i={i} inView={inView} />
           ))}
         </div>
 

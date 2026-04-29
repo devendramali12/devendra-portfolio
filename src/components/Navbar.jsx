@@ -42,10 +42,10 @@ const Navbar = () => {
           zIndex: 1000,
           height: "var(--nav-height)",
           padding: "0 clamp(20px, 4vw, 48px)",
-          background: scrolled ? "rgba(13,17,23,0.92)" : "transparent",
+          background: scrolled ? "rgba(255,255,255,0.9)" : "transparent",
           backdropFilter: scrolled ? "blur(20px) saturate(160%)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px) saturate(160%)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(6, 182, 212, 0.08)" : "none",
           transition: "all 0.3s ease",
           display: "flex",
           alignItems: "center",
@@ -114,7 +114,7 @@ const Navbar = () => {
               flexShrink: 0,
               position: "relative",
               zIndex: 1,
-              boxShadow: "0 8px 20px rgba(99,102,241,0.25)",
+              boxShadow: "0 8px 20px rgba(6, 182, 212, 0.25)",
             }}
             className="nav-logo"
           >
@@ -234,7 +234,7 @@ const Navbar = () => {
           position: "fixed",
           inset: 0,
           zIndex: 999,
-          background: "rgba(13,17,23,0.98)",
+          background: "rgba(255,255,255,0.95)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           display: "flex",

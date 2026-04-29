@@ -6,8 +6,8 @@ const useTheme = () => {
     const saved = localStorage.getItem("portfolio-theme");
     if (saved) return saved === "dark";
 
-    // Fall back to system preference
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    // Default to light theme
+    return false;
   });
 
   React.useEffect(() => {

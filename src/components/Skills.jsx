@@ -21,15 +21,7 @@ const SKILL_CATEGORIES = [
         />
       </svg>
     ),
-    skills: [
-      "Java",
-      "Spring Boot",
-      "Spring Framework",
-      "RESTful APIs",
-      "Jakarta Servlets & JSP",
-      "Hibernate & JPA",
-      "Microservices",
-    ],
+    skills: ["Java", "Spring Boot", "RESTful APIs", "Hibernate & JPA"],
   },
   {
     title: "Frontend Development",
@@ -53,10 +45,7 @@ const SKILL_CATEGORIES = [
       "React.js",
       "JavaScript (ES6+)",
       "HTML5 & CSS3",
-      "TypeScript",
       "Responsive Design",
-      "Tailwind CSS",
-      "Vite & Webpack",
     ],
   },
   {
@@ -81,10 +70,7 @@ const SKILL_CATEGORIES = [
       "PostgreSQL",
       "MySQL",
       "SQL & Query Optimization",
-      "JDBC",
       "Database Design",
-      "HikariCP",
-      "Data Persistence",
     ],
   },
   {
@@ -105,28 +91,14 @@ const SKILL_CATEGORIES = [
         />
       </svg>
     ),
-    skills: [
-      "Git & GitHub",
-      "Maven",
-      "Apache Tomcat",
-      "Docker",
-      "Linux/CLI",
-      "Application Deployment",
-      "CI/CD Basics",
-    ],
+    skills: ["Git & GitHub", "Maven", "Docker", "Linux/CLI"],
   },
 ];
 
 const CORE_COMPETENCIES = [
   "Object-Oriented Programming",
   "Design Patterns",
-  "Clean Code Principles",
-  "Algorithm Design",
-  "Data Structures",
-  "Testing & Debugging",
-  "Performance Optimization",
-  "Technical Documentation",
-  "Code Review",
+  "Clean Code",
   "Problem Solving",
 ];
 
@@ -135,18 +107,10 @@ const TECH_STACK = [
   "Spring Boot",
   "React",
   "JavaScript",
-  "TypeScript",
   "PostgreSQL",
-  "MySQL",
-  "Hibernate",
-  "Maven",
-  "Git",
   "Docker",
-  "Tomcat",
-  "REST APIs",
-  "HTML/CSS",
-  "Tailwind CSS",
-  "Linux",
+  "Git",
+  "Maven",
 ];
 
 const LEARNING_FOCUS = [

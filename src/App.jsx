@@ -2,7 +2,6 @@ import "./App.css";
 import GlobalStyles from "./styles/GlobalStyles";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import ScrollToTop from "./components/ScrollToTop";
-import CustomCursor from "./components/CustomCursor";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -23,7 +22,6 @@ function App() {
       <GlobalStyles />
       <ScrollProgressBar />
       <ScrollToTop />
-      <CustomCursor />
       <Navbar />
       <main>
         <Hero />

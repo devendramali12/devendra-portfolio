@@ -81,9 +81,9 @@ const About = () => {
             style={{
               width: "100%",
               aspectRatio: "1",
-              background: "linear-gradient(145deg, #1C2333 0%, #161B22 100%)",
+              background: "linear-gradient(145deg, #F0F2F5 0%, #E5E7EB 100%)",
               borderRadius: "24px",
-              border: "1px solid rgba(255,255,255,0.03)",
+              border: "1px solid rgba(6, 182, 212, 0.1)",
               position: "relative",
               display: "flex",
               alignItems: "center",
@@ -98,7 +98,7 @@ const About = () => {
               height="100"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="rgba(255,255,255,0.08)"
+              stroke="rgba(6, 182, 212, 0.15)"
               strokeWidth="1.5"
             >
               <path
@@ -115,8 +115,8 @@ const About = () => {
               position: "absolute",
               bottom: -20,
               right: -20,
-              background: "#1E2433",
-              border: "1px solid rgba(255,255,255,0.05)",
+              background: "#F8F9FA",
+              border: "1px solid rgba(6, 182, 212, 0.1)",
               borderRadius: "16px",
               padding: "32px",
               boxShadow: "var(--shadow-xl)",
@@ -150,7 +150,7 @@ const About = () => {
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 700,
                     fontSize: 18,
-                    color: "white",
+                    color: "var(--text-primary)",
                   }}
                 >
                   {s.value}

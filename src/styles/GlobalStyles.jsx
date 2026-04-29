@@ -6,41 +6,41 @@ const GlobalStyles = () => {
     const style = document.createElement("style");
     style.textContent = `
       /* ===================================================
-         DESIGN TOKENS — Deep Navy + Electric Indigo
-         Direction: Stripe / Linear / Vercel aesthetic
-         Accent: ONE color only — #6366F1 (indigo)
+         DESIGN TOKENS — Pristine Light Theme with Royal Indigo
+         Direction: Clean, premium, and trustworthy
+         Accent: ONE color only — #4F46E5 (indigo)
       =================================================== */
       :root {
-        /* Backgrounds — layered, distinguishable */
-        --bg-base:       #0D1117;   /* page background */
-        --bg-surface:    #161B22;   /* cards, panels */
-        --bg-elevated:   #1C2333;   /* hover states, inputs */
-        --bg-overlay:    #21262D;   /* tooltips, menus */
+        /* Backgrounds — light, layered */
+        --bg-base:       #FAFAFA;   /* page background */
+        --bg-surface:    #FFFFFF;   /* cards, panels */
+        --bg-elevated:   #F1F5F9;   /* hover states, inputs */
+        --bg-overlay:    #E2E8F0;   /* tooltips, menus */
 
-        /* Single accent — electric indigo */
-        --accent:        #6366F1;
-        --accent-hover:  #818CF8;
-        --accent-muted:  rgba(99, 102, 241, 0.12);
-        --accent-border: rgba(99, 102, 241, 0.25);
-        --accent-glow:   rgba(99, 102, 241, 0.20);
+        /* Single accent — royal indigo */
+        --accent:        #4F46E5;
+        --accent-hover:  #4338CA;
+        --accent-muted:  rgba(79, 70, 229, 0.08);
+        --accent-border: rgba(79, 70, 229, 0.2);
+        --accent-glow:   rgba(79, 70, 229, 0.12);
 
         /* Text hierarchy */
-        --text-primary:   #F0F6FC;
-        --text-secondary: #8B949E;
-        --text-muted:     #484F58;
-        --text-accent:    #6366F1;
+        --text-primary:   #0F172A;
+        --text-secondary: #475569;
+        --text-muted:     #94A3B8;
+        --text-accent:    #4F46E5;
 
         /* Borders */
-        --border:         #21262D;
-        --border-muted:   rgba(255,255,255,0.06);
-        --border-strong:  rgba(255,255,255,0.12);
+        --border:         #E2E8F0;
+        --border-muted:   rgba(0,0,0,0.04);
+        --border-strong:  rgba(0,0,0,0.08);
 
         /* Shadows */
-        --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
-        --shadow-md:  0 4px 16px rgba(0,0,0,0.5);
-        --shadow-lg:  0 8px 32px rgba(0,0,0,0.6);
-        --shadow-xl:  0 20px 60px rgba(0,0,0,0.7);
-        --glow:       0 0 24px rgba(99,102,241,0.15);
+        --shadow-sm:  0 1px 2px rgba(0,0,0,0.04);
+        --shadow-md:  0 4px 6px -1px rgba(0,0,0,0.08);
+        --shadow-lg:  0 10px 15px -3px rgba(0,0,0,0.1);
+        --shadow-xl:  0 20px 25px -5px rgba(0,0,0,0.12);
+        --glow:       0 0 16px rgba(79, 70, 229, 0.15);
 
         /* Layout */
         --nav-height: 68px;
@@ -116,8 +116,8 @@ const GlobalStyles = () => {
         to   { opacity: 1; transform: translateY(0); }
       }
       @keyframes glow {
-        0%,100% { box-shadow: 0 0 20px rgba(99,102,241,0.2); }
-        50%      { box-shadow: 0 0 30px rgba(99,102,241,0.4); }
+        0%,100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.15); }
+        50%      { box-shadow: 0 0 30px rgba(79, 70, 229, 0.25); }
       }
       @keyframes shimmer {
         0% { background-position: -1000px 0; }
@@ -138,9 +138,9 @@ const GlobalStyles = () => {
         100% { transform: rotateX(0) rotateY(0) scale(1); }
       }
       @keyframes buttonPulse {
-        0% { box-shadow: 0 0 0 0 rgba(99,102,241,0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(99,102,241,0); }
-        100% { box-shadow: 0 0 0 0 rgba(99,102,241,0); }
+        0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.3); }
+        70% { box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
       }
       @keyframes slideDown {
         from { opacity: 0; transform: translateY(-8px); }
@@ -154,12 +154,12 @@ const GlobalStyles = () => {
       /* ===== GLOBAL UTILITIES ===== */
 
       .gradient-text {
-        background: linear-gradient(135deg, #818CF8 0%, #6366F1 50%, #A78BFA 100%);
+        background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
         background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: gradientText 4s ease infinite;
+        animation: none;
       }
 
       .section-label {
@@ -213,7 +213,7 @@ const GlobalStyles = () => {
       .btn-primary:hover {
         background: var(--accent-hover);
         transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(99,102,241,0.35);
+        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.25);
         animation: buttonPulse 0.6s ease-out 1;
       }
       .btn-primary:active { transform: translateY(0); }

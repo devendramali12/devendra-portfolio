@@ -297,7 +297,7 @@ const Footer = () => {
                   e.currentTarget.style.color = "white";
                   e.currentTarget.style.transform = "translateY(-2px)";
                   e.currentTarget.style.boxShadow =
-                    "0 4px 12px rgba(99,102,241,0.25)";
+                    "0 4px 12px rgba(6, 182, 212, 0.25)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = "var(--accent-muted)";
@@ -366,18 +366,18 @@ const Footer = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 8px 20px rgba(99,102,241,0.35)",
+            boxShadow: "0 8px 20px rgba(6, 182, 212, 0.35)",
             transition: "all 0.3s cubic-bezier(0.4,0,0.2,1)",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateY(-4px)";
             e.currentTarget.style.boxShadow =
-              "0 12px 24px rgba(99,102,241,0.45)";
+              "0 12px 24px rgba(6, 182, 212, 0.45)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = "none";
             e.currentTarget.style.boxShadow =
-              "0 8px 20px rgba(99,102,241,0.35)";
+              "0 8px 20px rgba(6, 182, 212, 0.35)";
           }}
         >
           <svg

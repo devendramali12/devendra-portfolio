@@ -15,7 +15,7 @@ const Toast = ({ message, type = "success", onClose }) => {
   const textColor = {
     success: "#10B981",
     error: "#F87171",
-    info: "#6366F1",
+    info: "#06B6D4",
   }[type];
 
   const icon = {

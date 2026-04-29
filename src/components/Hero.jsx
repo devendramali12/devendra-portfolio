@@ -62,7 +62,7 @@ const Hero = () => {
           width: "40%",
           height: "50%",
           background:
-            "radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 60%)",
           filter: "blur(80px)",
           pointerEvents: "none",
         }}
@@ -75,7 +75,7 @@ const Hero = () => {
           inset: 0,
           backgroundSize: "40px 40px",
           backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px)",
+            "linear-gradient(to right, rgba(6, 182, 212, 0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(6, 182, 212, 0.08) 1px, transparent 1px)",
           maskImage:
             "linear-gradient(to bottom, transparent, black, transparent)",
           WebkitMaskImage:
@@ -393,13 +393,13 @@ const Hero = () => {
               right: "5%",
               width: "90%",
               aspectRatio: "4/3",
-              background: "#010409" /* Darker contrast base */,
+              background: "#F8F9FA" /* Light contrast base */,
               borderRadius: "16px",
               border: "1px solid var(--border)",
-              boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
+              boxShadow: "0 24px 60px rgba(0,0,0,0.1)",
               transform: `rotateY(-12deg) rotateX(4deg) translateY(${parallaxOffset}px)`,
               transformStyle: "preserve-3d",
-              animation: "floatA 6s ease-in-out infinite",
+              animation: "none",
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
@@ -410,7 +410,7 @@ const Hero = () => {
             <div
               style={{
                 height: 32,
-                background: "#0D1117",
+                background: "#EEEFF2",
                 borderBottom: "1px solid var(--border)",
                 display: "flex",
                 alignItems: "center",
@@ -509,7 +509,7 @@ const Hero = () => {
               borderRadius: "16px",
               border: "1px solid var(--border-strong)",
               boxShadow: "0 16px 40px rgba(0,0,0,0.5)",
-              animation: "floatB 7s ease-in-out infinite reverse",
+              animation: "none",
               display: "flex",
               alignItems: "center",
               gap: 16,
